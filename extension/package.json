@@ -1,0 +1,45 @@
+{
+  "name": "ansible-sign-vscode",
+  "displayName": "Ansible Sign",
+  "publisher": "Pierre-Guillaume Bufferne",
+  "author": "Pierre-Guillaume Bufferne",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "activationEvents": [
+    "onCommand:ansibleSign.signProject"
+  ],
+  "main": "extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ansibleSign.signProject",
+        "title": "Ansible Sign: Sign project (gpg-sign)"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Ansible Sign",
+      "properties": {
+        "ansibleSign.command": {
+          "type": "string",
+          "default": "ansible-sign project gpg-sign .",
+          "description": "Commande complète utilisée pour signer le projet. Ex: ansible-sign project gpg-sign ."
+        },
+        "ansibleSign.path": {
+          "type": "string",
+          "default": "ansible-sign",
+          "description": "(Optionnel) Chemin vers l'exécutable ansible-sign si nécessaire. Si 'ansibleSign.command' contient le chemin complet, ce champ n'est pas utilisé."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "ansibleSign.signProject",
+        "key": "ctrl+alt+s",
+        "when": "workspaceFolderCount > 0"
+      }
+    ]
+  }
+}
